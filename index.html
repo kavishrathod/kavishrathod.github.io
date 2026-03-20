@@ -576,9 +576,12 @@
     /* ── CLOCK ── */
     function pad(n) { return String(n).padStart(2,'0'); }
     function tick() {
-      const now = new Date();
-      document.getElementById('clock').textContent =
-        pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
+    const now = new Date();
+    let h = now.getHours();
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12 || 12;
+    document.getElementById('clock').textContent =
+    pad(h) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds()) + ' ' + ampm;
     }
     tick();
     setInterval(tick, 1000);
